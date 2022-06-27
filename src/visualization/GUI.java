@@ -22,7 +22,7 @@ public class GUI {
     private static final double dt = 1000.0 / (double) fps;
     private int t = 0;
 
-    private final static int particleSize = 6;
+    private final static int particleSize = 4;
 
     private final Points points = new Points(256, 2);
 
@@ -37,10 +37,12 @@ public class GUI {
             graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
             graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
             graphics.setColor(lightYellow);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 40, TABLE_WIDTH, TABLE_HEIGHT / 2 - 40);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 40, TABLE_WIDTH, TABLE_HEIGHT / 2 + 40);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 80, TABLE_WIDTH, TABLE_HEIGHT / 2 - 80);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 80, TABLE_WIDTH, TABLE_HEIGHT / 2 + 80);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 100, TABLE_WIDTH, TABLE_HEIGHT / 2 - 100);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 100, TABLE_WIDTH, TABLE_HEIGHT / 2 + 100);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 200, TABLE_WIDTH, TABLE_HEIGHT / 2 - 200);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 200, TABLE_WIDTH, TABLE_HEIGHT / 2 + 200);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 300, TABLE_WIDTH, TABLE_HEIGHT / 2 - 300);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 300, TABLE_WIDTH, TABLE_HEIGHT / 2 + 300);
             graphics.setColor(Color.white);
             for (int i = 0; i < points.quantity; ++i) {
                 graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
@@ -80,6 +82,10 @@ public class GUI {
         ActionListener[] tasks = new ActionListener[]{
                 e -> drawArea.repaint(),
                 e -> {
+                    if (isPause) {
+                        drawArea.repaint();
+                        return;
+                    }
                     if (++iteration >= points.quantity) {
                         iteration = 0;
                     }

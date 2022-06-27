@@ -43,6 +43,8 @@ public class GUI {
             graphics.drawLine(0, TABLE_HEIGHT / 2 + 200, TABLE_WIDTH, TABLE_HEIGHT / 2 + 200);
             graphics.drawLine(0, TABLE_HEIGHT / 2 - 300, TABLE_WIDTH, TABLE_HEIGHT / 2 - 300);
             graphics.drawLine(0, TABLE_HEIGHT / 2 + 300, TABLE_WIDTH, TABLE_HEIGHT / 2 + 300);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 400, TABLE_WIDTH, TABLE_HEIGHT / 2 - 400);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 400, TABLE_WIDTH, TABLE_HEIGHT / 2 + 400);
             graphics.setColor(Color.white);
             for (int i = 0; i < points.quantity; ++i) {
                 graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
@@ -91,7 +93,7 @@ public class GUI {
                     }
                     points.coordinate[iteration][0] = 200.0;
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                      100.0 * Math.sin(Math.PI * (double) t / 50.0);
+                                                      200.0 * Math.sin(Math.PI * (double) t / 50.0);
                     points.velocity[iteration][0] = 8.0;
                     points.move();
 

@@ -93,7 +93,7 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t > 0x80000000) {
+                    if (t > 0x40000000) {
                         isPause = true;
                         t = 0;
                     }

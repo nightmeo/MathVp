@@ -18,6 +18,8 @@ public class GUI {
 
     private boolean isPause = true;
 
+    private int mode = 0;
+
     private final static int fps = 100;
     private static final double dt = 1000.0 / (double) fps;
     private int t = 0;
@@ -33,22 +35,21 @@ public class GUI {
 
         @Override
         public void paint(Graphics graphics) {
-            graphics.setColor(Color.yellow);
-            graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
-            graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
-            graphics.setColor(lightYellow);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 100, TABLE_WIDTH, TABLE_HEIGHT / 2 - 100);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 100, TABLE_WIDTH, TABLE_HEIGHT / 2 + 100);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 200, TABLE_WIDTH, TABLE_HEIGHT / 2 - 200);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 200, TABLE_WIDTH, TABLE_HEIGHT / 2 + 200);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 300, TABLE_WIDTH, TABLE_HEIGHT / 2 - 300);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 300, TABLE_WIDTH, TABLE_HEIGHT / 2 + 300);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 - 400, TABLE_WIDTH, TABLE_HEIGHT / 2 - 400);
-            graphics.drawLine(0, TABLE_HEIGHT / 2 + 400, TABLE_WIDTH, TABLE_HEIGHT / 2 + 400);
-            graphics.setColor(Color.white);
-            for (int i = 0; i < points.quantity; ++i) {
-                graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
-                        particleSize, particleSize);
+            if (mode == 0) {
+                graphics.setColor(Color.yellow);
+                graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
+                graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
+                graphics.setColor(lightYellow);
+                for (int i = 0, space = 100; ++i < TABLE_HEIGHT / space; ) {
+                    graphics.drawLine(0, TABLE_HEIGHT / 2 - space * i,
+                            TABLE_WIDTH, TABLE_HEIGHT / 2 + space * i);
+                }
+                graphics.setColor(Color.white);
+                for (int i = 0; i < points.quantity; ++i) {
+                    graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
+                            (int) points.coordinate[i][1] - particleSize / 2,
+                            particleSize, particleSize);
+                }
             }
         }
 
@@ -68,6 +69,8 @@ public class GUI {
     Canvas_0 drawArea = new Canvas_0();
 
     public void init(int mode) {
+        this.mode = mode;
+
         KeyListener listener = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {

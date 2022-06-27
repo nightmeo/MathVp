@@ -22,7 +22,7 @@ public class GUI {
     private static final double dt = 1000.0 / (double) fps;
     private int t = 0;
 
-    private final static int particleSize = 1;
+    private final static int particleSize = 3;
 
     private final Points points = new Points(256, 2);
 

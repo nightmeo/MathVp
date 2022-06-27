@@ -26,7 +26,7 @@ public class GUI {
 
     private final static int particleSize = 4;
 
-    private final Points points = new Points(256, 2);
+    private Points points;
 
     private int iteration = 0;
 
@@ -35,22 +35,37 @@ public class GUI {
 
         @Override
         public void paint(Graphics graphics) {
-            if (mode == 1) {
-                graphics.setColor(Color.yellow);
-                graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
-                graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
-                graphics.setColor(lightYellow);
-                for (int i = 0, space = 100; ++i < TABLE_HEIGHT / space; ) {
-                    graphics.drawLine(0, TABLE_HEIGHT / 2 - space * i,
-                            TABLE_WIDTH, TABLE_HEIGHT / 2 - space * i);
-                    graphics.drawLine(0, TABLE_HEIGHT / 2 + space * i,
-                            TABLE_WIDTH, TABLE_HEIGHT / 2 + space * i);
+            switch (mode) {
+                case 1 -> {
+                    graphics.setColor(Color.yellow);
+                    graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
+                    graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
+                    graphics.setColor(lightYellow);
+                    for (int i = 0, space = 100; ++i < TABLE_HEIGHT / space; ) {
+                        graphics.drawLine(0, TABLE_HEIGHT / 2 - space * i,
+                                TABLE_WIDTH, TABLE_HEIGHT / 2 - space * i);
+                        graphics.drawLine(0, TABLE_HEIGHT / 2 + space * i,
+                                TABLE_WIDTH, TABLE_HEIGHT / 2 + space * i);
+                    }
+                    graphics.setColor(Color.white);
+                    for (int i = 0; i < points.quantity; ++i) {
+                        graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
+                                (int) points.coordinate[i][1] - particleSize / 2,
+                                particleSize, particleSize);
+                    }
                 }
-                graphics.setColor(Color.white);
-                for (int i = 0; i < points.quantity; ++i) {
-                    graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
-                            (int) points.coordinate[i][1] - particleSize / 2,
-                            particleSize, particleSize);
+                case 2 -> {
+                    graphics.setColor(Color.pink);
+                    graphics.drawOval(TABLE_WIDTH / 2 - 20, TABLE_HEIGHT / 2 - 20, 40, 40);
+                    graphics.setColor(Color.white);
+                    for (int i = 0; i < points.quantity; ++i) {
+                        graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
+                                (int) points.coordinate[i][1] - particleSize / 2,
+                                particleSize, particleSize);
+                    }
+                }
+                default -> {
+
                 }
             }
         }
@@ -72,6 +87,12 @@ public class GUI {
 
     public void init(int mode) {
         this.mode = mode;
+
+        points = switch (mode) {
+            case 1 -> new Points(256, 2);
+            case 2 -> new Points(1024, 2);
+            default -> new Points(0, 0);
+        };
 
         KeyListener listener = new KeyAdapter() {
             @Override
@@ -103,13 +124,44 @@ public class GUI {
                     points.coordinate[iteration][0] = 200.0;
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 -
                                                       200.0 * Math.sin(Math.PI * (double) t / 50.0);
+
                     points.velocity[iteration][0] = 8.0;
+
                     points.move();
 
                     ++t;
                     drawArea.repaint();
                 },
-                e -> drawArea.repaint(),
+                e -> {
+                    if (isPause) {
+                        drawArea.repaint();
+                        return;
+                    }
+                    if (t > 0x40000000) {
+                        isPause = true;
+                        t = 0;
+                    }
+                    if (iteration >= points.quantity - 64) {
+                        iteration = 0;
+                    }
+                    for (int i = 0; i < 64; ++i) {
+
+                        double r = Math.PI * (double) t / 200.0;
+                        points.coordinate[iteration + i][0] = (double) TABLE_HEIGHT / 2.0 -
+                                                              20.0 * Math.sin(r);
+                        points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
+                                                              20.0 * Math.cos(r);
+
+                        points.velocity[iteration + i][0] = 8.0 * Math.sin(r);
+                        points.velocity[iteration + i][1] = 8.0 * Math.cos(r);
+                    }
+
+                    points.move();
+
+                    iteration += 64;
+                    ++t;
+                    drawArea.repaint();
+                },
                 e -> drawArea.repaint(),
 
         };

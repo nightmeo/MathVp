@@ -138,7 +138,7 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t % 5 == 0) {
+                    if (t % 20 == 0) {
                         if (t > 0x40000000) {
                             isPause = true;
                             t = 0;

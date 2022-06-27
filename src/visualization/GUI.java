@@ -22,7 +22,8 @@ public class GUI {
 
     private final static int fps = 100;
     private static final double dt = 1000.0 / (double) fps;
-    private int t = 0;
+    private int t0 = 0;
+    private int t1 = 0;
 
     private final static int particleSize = 4;
 
@@ -114,22 +115,22 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t > 0x40000000) {
+                    if (t0 > 0x40000000) {
                         isPause = true;
-                        t = 0;
+                        t0 = 0;
                     }
                     if (++iteration >= points.quantity) {
                         iteration = 0;
                     }
                     points.coordinate[iteration][0] = 200.0;
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 -
-                                                      200.0 * Math.sin(Math.PI * (double) t / 50.0);
+                                                      200.0 * Math.sin(Math.PI * (double) t0 / 50.0);
 
                     points.velocity[iteration][0] = 8.0;
 
                     points.move();
 
-                    ++t;
+                    ++t0;
                     drawArea.repaint();
                 },
                 e -> {
@@ -137,16 +138,16 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t / 64 % 5 == 0) {
-                        if (t > 0x40000000) {
+                    if (t1 % 5 == 0) {
+                        if (t0 > 0x40000000) {
                             isPause = true;
-                            t = 0;
+                            t0 = 0;
                         }
                         if (iteration >= points.quantity - 64) {
                             iteration = 0;
                         }
-                        for (int i = 0; i < 64; ++i, ++t) {
-                            double r = Math.PI * (double) t / 200.0;
+                        for (int i = 0; i < 64; ++i, ++t0) {
+                            double r = Math.PI * (double) t0 / 200.0;
                             points.coordinate[iteration + i][0] = (double) TABLE_HEIGHT / 2.0 -
                                                                   20.0 * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
@@ -156,6 +157,8 @@ public class GUI {
                             points.velocity[iteration + i][1] = 8.0 * Math.cos(r);
                         }
 
+                        t0 += 4;
+                        ++t1;
                         iteration += 64;
                     }
 

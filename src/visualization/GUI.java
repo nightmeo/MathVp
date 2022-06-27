@@ -153,16 +153,16 @@ public class GUI {
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
                                                                   20.0 * Math.cos(r);
 
-                            points.velocity[iteration + i][0] = 8.0 * Math.sin(r);
-                            points.velocity[iteration + i][1] = 8.0 * Math.cos(r);
+                            points.velocity[iteration + i][0] = 2.0 * Math.sin(r);
+                            points.velocity[iteration + i][1] = 2.0 * Math.cos(r);
                         }
 
-                        ++t;
                         iteration += 64;
                     }
 
                     points.move();
 
+                    ++t;
                     drawArea.repaint();
                 },
                 e -> drawArea.repaint(),

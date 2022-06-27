@@ -77,8 +77,8 @@ public class GUI {
                     }
                     points.coordinate[iteration][0] = 200.0;
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                      10.0 * Math.sin(Math.PI * (double) t / 800.0);
-                    points.velocity[iteration][0] = 3.0;
+                                                      40.0 * Math.sin(Math.PI * (double) t / 40.0);
+                    points.velocity[iteration][0] = 4.0;
                     points.move();
 
                     ++t;

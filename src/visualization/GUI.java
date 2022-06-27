@@ -42,6 +42,8 @@ public class GUI {
                 graphics.setColor(lightYellow);
                 for (int i = 0, space = 100; ++i < TABLE_HEIGHT / space; ) {
                     graphics.drawLine(0, TABLE_HEIGHT / 2 - space * i,
+                            TABLE_WIDTH, TABLE_HEIGHT / 2 - space * i);
+                    graphics.drawLine(0, TABLE_HEIGHT / 2 + space * i,
                             TABLE_WIDTH, TABLE_HEIGHT / 2 + space * i);
                 }
                 graphics.setColor(Color.white);

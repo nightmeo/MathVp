@@ -19,8 +19,8 @@ public class GUI {
     private boolean isPause = true;
 
     private final static int fps = 100;
-
     private static final double dt = 1000.0 / (double) fps;
+    private int t = 0;
 
     private final static int particleSize = 1;
 
@@ -31,6 +31,9 @@ public class GUI {
     private final class Canvas_0 extends Canvas {
         @Override
         public void paint(Graphics graphics) {
+            graphics.setColor(Color.yellow);
+            graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
+            graphics.setColor(Color.white);
             for (int i = 0; i < points.quantity; ++i) {
                 graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
                         particleSize, particleSize);
@@ -69,14 +72,16 @@ public class GUI {
         ActionListener[] tasks = new ActionListener[]{
                 e -> drawArea.repaint(),
                 e -> {
-                    if (++iteration > points.quantity) {
+                    if (++iteration >= points.quantity) {
                         iteration = 0;
                     }
                     points.coordinate[iteration][0] = 200.0;
-                    points.coordinate[iteration][1] = Math.sin(Math.PI * (double) iteration / 800.0);
-                    points.velocity[iteration][0] = 1.0;
+                    points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 +
+                                                      10.0 * Math.sin(Math.PI * (double) t / 800.0);
+                    points.velocity[iteration][0] = 3.0;
                     points.move();
 
+                    ++t;
                     drawArea.repaint();
                 },
                 e -> drawArea.repaint(),

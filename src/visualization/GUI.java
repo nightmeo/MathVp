@@ -22,10 +22,19 @@ public class GUI {
 
     private static final double dt = 1000.0 / (double) fps;
 
+    private final static int particleSize = 1;
+
+    private final Points points = new Points(256, 2);
+
+    private int iteration = 0;
+
     private final class Canvas_0 extends Canvas {
         @Override
         public void paint(Graphics graphics) {
-
+            for (int i = 0; i < points.quantity; ++i) {
+                graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
+                        particleSize, particleSize);
+            }
         }
 
         @Override
@@ -60,7 +69,14 @@ public class GUI {
         ActionListener[] tasks = new ActionListener[]{
                 e -> drawArea.repaint(),
                 e -> {
-                    System.out.println('.');
+                    if (++iteration > points.quantity) {
+                        iteration = 0;
+                    }
+                    points.coordinate[iteration][0] = 200.0;
+                    points.coordinate[iteration][1] = Math.sin(Math.PI * (double) iteration / 800.0);
+                    points.velocity[iteration][0] = 1.0;
+                    points.move();
+
                     drawArea.repaint();
                 },
                 e -> drawArea.repaint(),

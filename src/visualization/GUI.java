@@ -35,7 +35,7 @@ public class GUI {
 
         @Override
         public void paint(Graphics graphics) {
-            if (mode == 0) {
+            if (mode == 1) {
                 graphics.setColor(Color.yellow);
                 graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
                 graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);

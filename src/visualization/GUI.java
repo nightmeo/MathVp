@@ -22,17 +22,25 @@ public class GUI {
     private static final double dt = 1000.0 / (double) fps;
     private int t = 0;
 
-    private final static int particleSize = 3;
+    private final static int particleSize = 6;
 
     private final Points points = new Points(256, 2);
 
     private int iteration = 0;
 
     private final class Canvas_0 extends Canvas {
+        private final static Color lightYellow = new Color(0xffffffc0);
+
         @Override
         public void paint(Graphics graphics) {
             graphics.setColor(Color.yellow);
             graphics.drawLine(200, 0, 200, TABLE_HEIGHT);
+            graphics.drawLine(0, TABLE_HEIGHT / 2, TABLE_WIDTH, TABLE_HEIGHT / 2);
+            graphics.setColor(lightYellow);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 40, TABLE_WIDTH, TABLE_HEIGHT / 2 - 40);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 40, TABLE_WIDTH, TABLE_HEIGHT / 2 + 40);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 - 80, TABLE_WIDTH, TABLE_HEIGHT / 2 - 80);
+            graphics.drawLine(0, TABLE_HEIGHT / 2 + 80, TABLE_WIDTH, TABLE_HEIGHT / 2 + 80);
             graphics.setColor(Color.white);
             for (int i = 0; i < points.quantity; ++i) {
                 graphics.fillOval((int) points.coordinate[i][0], (int) points.coordinate[i][1],
@@ -77,8 +85,8 @@ public class GUI {
                     }
                     points.coordinate[iteration][0] = 200.0;
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                      40.0 * Math.sin(Math.PI * (double) t / 40.0);
-                    points.velocity[iteration][0] = 4.0;
+                                                      100.0 * Math.sin(Math.PI * (double) t / 50.0);
+                    points.velocity[iteration][0] = 8.0;
                     points.move();
 
                     ++t;

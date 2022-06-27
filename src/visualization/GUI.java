@@ -138,7 +138,7 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t % 15 == 0) {
+                    if (t % 10 == 0) {
                         if (t > 0x40000000) {
                             isPause = true;
                             t = 0;
@@ -146,14 +146,14 @@ public class GUI {
                         if (iteration >= points.quantity - 64) {
                             iteration = 0;
                         }
-                        r = 0.1 * Math.sin((double) t / 90.0);
+                        r = 4.0 * Math.sin((double) t / 600.0);
                         for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   20.0 * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
                                                                   20.0 * Math.cos(r);
-                            points.velocity[iteration + i][0] = -2.5 * Math.sin(r);
-                            points.velocity[iteration + i][1] = 2.5 * Math.cos(r);
+                            points.velocity[iteration + i][0] = -4.0 * Math.sin(r);
+                            points.velocity[iteration + i][1] = 4.0 * Math.cos(r);
                         }
 
                         iteration += 64;

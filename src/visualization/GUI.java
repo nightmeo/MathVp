@@ -44,7 +44,6 @@ public class GUI {
     Canvas_0 drawArea = new Canvas_0();
 
     public void init(int mode) {
-
         KeyListener listener = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -60,7 +59,10 @@ public class GUI {
 
         ActionListener[] tasks = new ActionListener[]{
                 e -> drawArea.repaint(),
-                e -> drawArea.repaint(),
+                e -> {
+                    System.out.println('.');
+                    drawArea.repaint();
+                },
                 e -> drawArea.repaint(),
                 e -> drawArea.repaint(),
 

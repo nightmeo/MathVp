@@ -146,7 +146,8 @@ public class GUI {
                         if (iteration >= points.quantity - 64) {
                             iteration = 0;
                         }
-                        for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0 + 0.4 * Math.sin((double) t / 90.0)) {
+                        r = 0.1 * Math.sin((double) t / 90.0);
+                        for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   20.0 * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +

@@ -137,29 +137,30 @@ public class GUI {
                         drawArea.repaint();
                         return;
                     }
-                    if (t > 0x40000000) {
-                        isPause = true;
-                        t = 0;
-                    }
-                    if (iteration >= points.quantity - 64) {
-                        iteration = 0;
-                    }
-                    for (int i = 0; i < 64; ++i) {
+                    if (t / 64 % 5 == 0) {
+                        if (t > 0x40000000) {
+                            isPause = true;
+                            t = 0;
+                        }
+                        if (iteration >= points.quantity - 64) {
+                            iteration = 0;
+                        }
+                        for (int i = 0; i < 64; ++i, ++t) {
+                            double r = Math.PI * (double) t / 200.0;
+                            points.coordinate[iteration + i][0] = (double) TABLE_HEIGHT / 2.0 -
+                                                                  20.0 * Math.sin(r);
+                            points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
+                                                                  20.0 * Math.cos(r);
 
-                        double r = Math.PI * (double) t / 200.0;
-                        points.coordinate[iteration + i][0] = (double) TABLE_HEIGHT / 2.0 -
-                                                              20.0 * Math.sin(r);
-                        points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                              20.0 * Math.cos(r);
+                            points.velocity[iteration + i][0] = 8.0 * Math.sin(r);
+                            points.velocity[iteration + i][1] = 8.0 * Math.cos(r);
+                        }
 
-                        points.velocity[iteration + i][0] = 8.0 * Math.sin(r);
-                        points.velocity[iteration + i][1] = 8.0 * Math.cos(r);
+                        iteration += 64;
                     }
 
                     points.move();
 
-                    iteration += 64;
-                    ++t;
                     drawArea.repaint();
                 },
                 e -> drawArea.repaint(),
@@ -168,7 +169,7 @@ public class GUI {
 
         ActionListener taskX = e -> drawArea.repaint();
 
-        Timer timer = new Timer(1000 / fps, mode < tasks.length ? tasks[mode] : taskX);
+        Timer timer = new Timer(1000 / fps, this.mode < tasks.length ? tasks[this.mode] : taskX);
         timer.start();
 
         drawArea.setPreferredSize(new Dimension(TABLE_WIDTH, TABLE_HEIGHT));

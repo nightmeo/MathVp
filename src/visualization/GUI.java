@@ -154,7 +154,7 @@ public class GUI {
                                                                   20.0 * Math.cos(r);
 
                             points.velocity[iteration + i][0] = 1.5 * Math.sin(r);
-                            points.velocity[iteration + i][1] = 1.5 * Math.cos(r);
+                            points.velocity[iteration + i][1] = -1.5 * Math.cos(r);
                         }
 
                         iteration += 64;

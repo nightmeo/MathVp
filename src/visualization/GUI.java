@@ -136,7 +136,7 @@ public class GUI {
 
                     points.velocity[iteration][0] = 8.0;
 
-                    points.move();
+                    points.move(dt);
 
                     ++t;
                     drawArea.repaint();
@@ -154,7 +154,7 @@ public class GUI {
                         if (iteration >= points.quantity - 64) {
                             iteration = 0;
                         }
-                        r = Math.PI / 96.0 * Math.sin((double) t / 200.0);
+                        r = Math.PI * 2.0 * Math.sin((double) t / 400.0);
                         for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   20.0 * Math.sin(r);
@@ -167,13 +167,12 @@ public class GUI {
                         iteration += 64;
                     }
 
-                    points.move();
+                    points.move(dt);
 
                     ++t;
                     drawArea.repaint();
                 },
                 e -> drawArea.repaint(),
-
         };
 
         ActionListener taskX = e -> drawArea.repaint();

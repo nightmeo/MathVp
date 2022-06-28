@@ -56,17 +56,25 @@ public class GUI {
                     }
                 }
                 case 2 -> {
-                    graphics.setColor(Color.pink);
-                    graphics.drawOval(TABLE_WIDTH / 2 - 20, TABLE_HEIGHT / 2 - 20, 40, 40);
                     graphics.setColor(Color.white);
+                    graphics.drawOval(TABLE_WIDTH / 2 - 20, TABLE_HEIGHT / 2 - 20, 40, 40);
                     for (int i = 0; i < points.quantity; ++i) {
+                        graphics.setColor(switch (i % 8) {
+                            case 0, 4 -> Color.white;
+                            case 1 -> Color.red;
+                            case 2 -> Color.green;
+                            case 3 -> Color.blue;
+                            case 5 -> Color.cyan;
+                            case 6 -> Color.magenta;
+                            case 7 -> Color.yellow;
+                            default -> Color.black;
+                        });
                         graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
                                 (int) points.coordinate[i][1] - particleSize / 2,
                                 particleSize, particleSize);
                     }
                 }
                 default -> {
-
                 }
             }
         }
@@ -146,7 +154,7 @@ public class GUI {
                         if (iteration >= points.quantity - 64) {
                             iteration = 0;
                         }
-                        r = 4.0 * Math.sin((double) t / 600.0);
+                        r = Math.PI / 96.0 * Math.sin((double) t / 200.0);
                         for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   20.0 * Math.sin(r);

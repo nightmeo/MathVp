@@ -134,7 +134,7 @@ public class V {
                     points.coordinate[iteration][1] = (double) TABLE_HEIGHT / 2.0 -
                                                       200.0 * Math.sin(Math.PI * (double) t / 50.0);
 
-                    points.velocity[iteration][0] = 8.0;
+                    points.velocity[iteration][0] = 6.0;
 
                     points.move(dt);
 

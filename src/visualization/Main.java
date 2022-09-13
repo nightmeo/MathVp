@@ -8,6 +8,6 @@ public class Main {
                 enter mode...
                 0: null  1: sin()  2: wave&particle
                 ->\040""");
-        new GUI().init(new Scanner(System.in).nextInt());
+        new V().init(new Scanner(System.in).nextInt());
     }
 }

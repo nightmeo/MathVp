@@ -174,7 +174,8 @@ public class V {
                         if (iteration >= points.quantity - tracks) {
                             iteration = 0;
                         }
-                        r = la * Math.sin((double) t / tl);
+                        r = Math.sin((double) t / tl);
+                        r *= (la * r);
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   m2ccr * Math.sin(r);

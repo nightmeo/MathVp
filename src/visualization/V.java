@@ -150,9 +150,9 @@ public class V {
 
                     final int st = 5;
 
-                    final double la = 40;
+                    final double la = 150;
 
-                    final double tl = 800.0;
+                    final double tl = 400.0;
 
                     if (isPause) {
                         drawArea.repaint();

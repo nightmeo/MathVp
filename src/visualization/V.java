@@ -142,6 +142,8 @@ public class V {
                     drawArea.repaint();
                 },
                 e -> {
+                    final int tracks = 64;
+
                     if (isPause) {
                         drawArea.repaint();
                         return;
@@ -151,11 +153,11 @@ public class V {
                             isPause = true;
                             t = 0;
                         }
-                        if (iteration >= points.quantity - 64) {
+                        if (iteration >= points.quantity - tracks) {
                             iteration = 0;
                         }
                         r = Math.PI * 2.0 * Math.sin((double) t / 400.0);
-                        for (int i = 0; i < 64; ++i, r += 2 * Math.PI / 64.0) {
+                        for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   20.0 * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
@@ -164,7 +166,7 @@ public class V {
                             points.velocity[iteration + i][1] = 4.0 * Math.cos(r);
                         }
 
-                        iteration += 64;
+                        iteration += tracks;
                     }
 
                     points.move(dt);

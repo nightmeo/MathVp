@@ -1,0 +1,2 @@
+已经取消ssl验证
+git config http.sslverify false

@@ -152,7 +152,7 @@ public class V {
 
                     final double la = 200;
 
-                    final double tl = 800.0;
+                    final double tl = 1000.0;
 
                     if (isPause) {
                         drawArea.repaint();

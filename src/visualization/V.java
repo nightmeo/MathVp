@@ -148,7 +148,7 @@ public class V {
 
                     final double v = 8.0;
 
-                    final int st = 10;
+                    final int st = 5;
 
                     if (isPause) {
                         drawArea.repaint();

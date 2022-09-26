@@ -148,11 +148,11 @@ public class V {
 
                     final double v = 8.0;
 
-                    final int st = 5;
+                    final int st = 4;
 
-                    final double la = 200;
+                    final double la = 400;
 
-                    final double tl = 1500.0;
+                    final double tl = 1200.0;
 
                     if (isPause) {
                         drawArea.repaint();

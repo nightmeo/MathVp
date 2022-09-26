@@ -152,13 +152,13 @@ public class V {
                     drawArea.repaint();
                 },
                 e -> {
-                    final int tracks = 12;
+                    final int tracks = 16;
 
                     final double v = 8.0;
 
                     final int st = 4;
 
-                    final double tl = 10000.0;
+                    final double tl = 16000.0;
 
                     if (isPause) {
                         drawArea.repaint();

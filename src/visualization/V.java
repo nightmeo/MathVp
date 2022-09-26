@@ -31,6 +31,10 @@ public class V {
 
     private int iteration = 0;
 
+    private final Color danmuku_waveAndParticle = new Color(0xffbfff);
+
+    private final int m2ccr = 10;
+
     private final class Canvas_0 extends Canvas {
         private final static Color lightYellow = new Color(0xffffffc0);
 
@@ -57,9 +61,10 @@ public class V {
                 }
                 case 2 -> {
                     graphics.setColor(Color.white);
-                    graphics.drawOval(TABLE_WIDTH / 2 - 20, TABLE_HEIGHT / 2 - 20, 40, 40);
+                    graphics.drawOval(TABLE_WIDTH / 2 - m2ccr, TABLE_HEIGHT / 2 - m2ccr, 2 * m2ccr, 2 * m2ccr);
+                    final boolean moreColor = false;
                     for (int i = 0; i < points.quantity; ++i) {
-                        graphics.setColor(switch (i % 8) {
+                        if (moreColor) graphics.setColor(switch (i % 8) {
                             case 0, 4 -> Color.white;
                             case 1 -> Color.red;
                             case 2 -> Color.green;
@@ -69,6 +74,7 @@ public class V {
                             case 7 -> Color.yellow;
                             default -> Color.black;
                         });
+                        else graphics.setColor(danmuku_waveAndParticle);
                         graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
                                 (int) points.coordinate[i][1] - particleSize / 2,
                                 particleSize, particleSize);
@@ -144,8 +150,6 @@ public class V {
                 e -> {
                     final int tracks = 8;
 
-                    final double c = 20.0;
-
                     final double v = 8.0;
 
                     final int st = 4;
@@ -169,9 +173,9 @@ public class V {
                         r = la * Math.sin((double) t / tl);
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
-                                                                  c * Math.sin(r);
+                                                                  m2ccr * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                                  c * Math.cos(r);
+                                                                  m2ccr * Math.cos(r);
                             points.velocity[iteration + i][0] = -v * Math.sin(r);
                             points.velocity[iteration + i][1] = v * Math.cos(r);
                         }

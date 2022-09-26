@@ -61,7 +61,7 @@ public class V {
                 }
                 case 2 -> {
                     graphics.setColor(Color.white);
-                    graphics.drawOval(TABLE_WIDTH / 2 - m2ccr, TABLE_HEIGHT / 2 - m2ccr, 2 * m2ccr, 2 * m2ccr);
+                    graphics.drawOval(TABLE_WIDTH / 2 - m2ccr, TABLE_HEIGHT / 3 - m2ccr, 2 * m2ccr, 2 * m2ccr);
                     for (int i = 0; i < points.quantity; ++i) {
                         //color mode: more
                         /*
@@ -158,7 +158,7 @@ public class V {
 
                     final int st = 4;
 
-                    final double tl = 16000.0;
+                    final double tl = 8000.0;
 
                     if (isPause) {
                         drawArea.repaint();

@@ -148,11 +148,13 @@ public class V {
 
                     final double v = 8.0;
 
+                    final int st = 10;
+
                     if (isPause) {
                         drawArea.repaint();
                         return;
                     }
-                    if (t % 10 == 0) {
+                    if (t % st == 0) {
                         if (t > 0x40000000) {
                             isPause = true;
                             t = 0;

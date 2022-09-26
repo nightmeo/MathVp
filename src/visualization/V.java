@@ -11,8 +11,8 @@ public class V {
     private Image iBuffer;
     private Graphics gBuffer;
 
-    private final static int TABLE_WIDTH = 1600;
-    private final static int TABLE_HEIGHT = 1000;
+    private final static int TABLE_WIDTH = 600;
+    private final static int TABLE_HEIGHT = 800;
 
     private final Frame frame = new Frame("V");
 

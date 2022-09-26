@@ -142,7 +142,7 @@ public class V {
                     drawArea.repaint();
                 },
                 e -> {
-                    final int tracks = 12;
+                    final int tracks = 8;
 
                     final double c = 20.0;
 
@@ -152,7 +152,7 @@ public class V {
 
                     final double la = 200;
 
-                    final double tl = 600.0;
+                    final double tl = 800.0;
 
                     if (isPause) {
                         drawArea.repaint();

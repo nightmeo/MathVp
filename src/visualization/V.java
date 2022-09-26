@@ -62,9 +62,10 @@ public class V {
                 case 2 -> {
                     graphics.setColor(Color.white);
                     graphics.drawOval(TABLE_WIDTH / 2 - m2ccr, TABLE_HEIGHT / 2 - m2ccr, 2 * m2ccr, 2 * m2ccr);
-                    final boolean moreColor = false;
                     for (int i = 0; i < points.quantity; ++i) {
-                        if (moreColor) graphics.setColor(switch (i % 8) {
+                        //color mode: more
+                        /*
+                        graphics.setColor(switch (i % 8) {
                             case 0, 4 -> Color.white;
                             case 1 -> Color.red;
                             case 2 -> Color.green;
@@ -74,7 +75,10 @@ public class V {
                             case 7 -> Color.yellow;
                             default -> Color.black;
                         });
-                        else graphics.setColor(danmuku_waveAndParticle);
+                        //color mode : pure
+                        graphics.setColor(danmuku_waveAndParticle);
+                         */
+                        graphics.setColor(danmuku_waveAndParticle);
                         graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
                                 (int) points.coordinate[i][1] - particleSize / 2,
                                 particleSize, particleSize);

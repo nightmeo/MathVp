@@ -158,9 +158,7 @@ public class V {
 
                     final int st = 4;
 
-                    final double la = 400;
-
-                    final double tl = 1200.0;
+                    final double tl = 6000.0;
 
                     if (isPause) {
                         drawArea.repaint();
@@ -174,8 +172,7 @@ public class V {
                         if (iteration >= points.quantity - tracks) {
                             iteration = 0;
                         }
-                        r = Math.sin((double) t / tl);
-                        r *= (la * r);
+                        r = (double) (t * t) / tl;
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
                                                                   m2ccr * Math.sin(r);

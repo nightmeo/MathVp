@@ -99,7 +99,7 @@ public class V {
 
         points = switch (mode) {
             case 1 -> new Points(256, 2);
-            case 2 -> new Points(2048, 2);
+            case 2 -> new Points(1024, 2);
             default -> new Points(0, 0);
         };
 
@@ -142,7 +142,11 @@ public class V {
                     drawArea.repaint();
                 },
                 e -> {
-                    final int tracks = 64;
+                    final int tracks = 4;
+
+                    final double spc = 20.0;
+
+                    final double spv = 4.0;
 
                     if (isPause) {
                         drawArea.repaint();
@@ -159,11 +163,11 @@ public class V {
                         r = Math.PI * 2.0 * Math.sin((double) t / 400.0);
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
-                                                                  20.0 * Math.sin(r);
+                                                                  spc * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 2.0 +
-                                                                  20.0 * Math.cos(r);
-                            points.velocity[iteration + i][0] = -4.0 * Math.sin(r);
-                            points.velocity[iteration + i][1] = 4.0 * Math.cos(r);
+                                                                  spc * Math.cos(r);
+                            points.velocity[iteration + i][0] = -spv * Math.sin(r);
+                            points.velocity[iteration + i][1] = spv * Math.cos(r);
                         }
 
                         iteration += tracks;

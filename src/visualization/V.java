@@ -174,10 +174,8 @@ public class V {
                         }
                         r = (double) (t * t) / tl;
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
-                            points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 -
-                                                                  m2ccr * Math.sin(r);
-                            points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 3.0 +
-                                                                  m2ccr * Math.cos(r);
+                            points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 - m2ccr * Math.sin(r);
+                            points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 3.0 + m2ccr * Math.cos(r);
                             points.velocity[iteration + i][0] = -v * Math.sin(r);
                             points.velocity[iteration + i][1] = v * Math.cos(r);
                         }

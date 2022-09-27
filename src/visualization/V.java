@@ -63,8 +63,8 @@ public class V {
                     graphics.setColor(Color.white);
                     graphics.drawOval(TABLE_WIDTH / 2 - m2ccr, TABLE_HEIGHT / 3 - m2ccr, 2 * m2ccr, 2 * m2ccr);
                     for (int i = 0; i < points.quantity; ++i) {
-                        //color mode: more
                         /*
+                        //color mode: more
                         graphics.setColor(switch (i % 8) {
                             case 0, 4 -> Color.white;
                             case 1 -> Color.red;
@@ -79,6 +79,7 @@ public class V {
                         graphics.setColor(danmuku_waveAndParticle);
                          */
                         graphics.setColor(danmuku_waveAndParticle);
+
                         graphics.fillOval((int) points.coordinate[i][0] - particleSize / 2,
                                 (int) points.coordinate[i][1] - particleSize / 2,
                                 particleSize, particleSize);
@@ -158,7 +159,7 @@ public class V {
 
                     final int st = 4;
 
-                    final double tl = 16000.0;
+                    final double tl = 240.0;
 
                     if (isPause) {
                         drawArea.repaint();
@@ -172,7 +173,14 @@ public class V {
                         if (iteration >= points.quantity - tracks) {
                             iteration = 0;
                         }
+                        /*
+                        //t^2
                         r = (double) (t * t) / tl;
+                        //sin(t)
+                        r = (A) * Math.sin(t / tl);
+                         */
+                        r = 20 * Math.sin(t / tl);
+
                         for (int i = 0; i < tracks; ++i, r += 2 * Math.PI / tracks) {
                             points.coordinate[iteration + i][0] = (double) TABLE_WIDTH / 2.0 - m2ccr * Math.sin(r);
                             points.coordinate[iteration + i][1] = (double) TABLE_HEIGHT / 3.0 + m2ccr * Math.cos(r);

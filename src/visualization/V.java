@@ -178,6 +178,9 @@ public class V {
                         r = (double) (t * t) / tl;
                         //sin(t)
                         r = (A) * Math.sin(t / tl);
+                        as : r = 20 * Math.sin(t / tl);
+                        //tan(t)
+                        as : r = (A) * Math.tan(t / tl);
                          */
                         r = 20 * Math.sin(t / tl);
 

@@ -155,7 +155,7 @@ public class V {
                 e -> {
                     final int tracks = 16;
 
-                    final double v = 8.0;
+                    final double v = 6.0;
 
                     final int st = 4;
 
